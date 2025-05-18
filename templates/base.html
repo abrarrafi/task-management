@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    
+    <!-- Bootstrap 4.3.1 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <!-- Font Awesome 4.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+/* Reset margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* match the form background */
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure full height if needed */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adjust main container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fff; /* white background for form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional subtle shadow */
+            display: flex;
+            margin: auto;
+        }
+
+        .wrapper {
+            background-color: #fff;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+
+        .logo {
+            width: 300px;
+            height: 70px;
+            margin-top: 20px;
+            margin-left: 35px;
+        }
+
+        .image {
+            width: 500px;
+            height: 320px;
+        }
+
+        .border-line {
+            border-right: 1px solid #EEEEEE;
+        }
+
+        .facebook, .twitter, .linkedin {
+            font-size: 18px;
+            padding-top: 5px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            color: #fff;
+            text-align: center;
+        }
+
+        .facebook { background-color: #3b5998; }
+        .twitter { background-color: #1DA1F2; }
+        .linkedin { background-color: #2867B2; }
+
+        .line {
+            height: 1px;
+            width: 45%;
+            background-color: #E0E0E0;
+            margin-top: 10px;
+        }
+
+        .or {
+            width: 10%;
+            font-weight: bold;
+        }
+
+        .text-sm {
+            font-size: 14px !important;
+        }
+
+        ::placeholder {
+            color: #BDBDBD;
+            opacity: 1;
+            font-weight: 300;
+        }
+
+        input, textarea {
+            padding: 10px 12px;
+            border: 1px solid lightgrey;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            margin-top: 2px;
+            width: 100%;
+            box-sizing: border-box;
+            color: #2C3E50;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        input:focus, textarea:focus {
+            box-shadow: none !important;
+            border: 1px solid #304FFE;
+            outline-width: 0;
+        }
+
+        button:focus {
+            box-shadow: none !important;
+            outline-width: 0;
+        }
+
+        .btn-blue {
+            background-color: #1A237E;
+            width: 150px;
+            color: #fff;
+            border-radius: 2px;
+        }
+
+        .btn-blue:hover {
+            background-color: #000;
+            cursor: pointer;
+        }
+
+        .bg-blue {
+            color: #fff;
+            background-color: #1A237E;
+        }
+
+        @media screen and (max-width: 991px) {
+            .logo {
+                margin-left: 0px;
+            }
+
+            .image {
+                width: 300px;
+                height: 220px;
+            }
+
+            .border-line {
+                border-right: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+
+        {% block content %}
+        {% endblock %}
+        <div class="bg-blue py-4">
+            <div class="row px-3">
+                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2019.</small>
+                <div class="social-contact ml-4 ml-sm-auto">
+                    <span class="fa fa-facebook mr-4 text-sm"></span>
+                    <span class="fa fa-google-plus mr-4 text-sm"></span>
+                    <span class="fa fa-linkedin mr-4 text-sm"></span>
+                    <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- jQuery 3.2.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

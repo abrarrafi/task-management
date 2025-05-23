@@ -1,0 +1,80 @@
+{% extends 'base_task.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Content -->
+<div class="container mt-4">
+    <h2 class="mb-3">My Tasks</h2>
+
+    <!-- Filter Form -->
+    <form method="get" class="bg-light p-3 rounded shadow-sm mb-4">
+        <div class="form-row">
+            <div class="col-md-3 mb-2">
+                <label>From Date</label>
+                <input type="date" name="from_date" class="form-control"
+                       value="{{ request.GET.from_date|default:today }}">
+            </div>
+            <div class="col-md-3 mb-2">
+                <label>To Date</label>
+                <input type="date" name="to_date" class="form-control"
+                       value="{{ request.GET.to_date|default:today }}">
+            </div>
+            <div class="col-md-3 mb-2">
+                <label>Status</label>
+                <select name="status" class="form-control">
+                    <option value="">All</option>
+                    <option value="Pending" {% if request.GET.status == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="In_progress" {% if request.GET.status == 'In_progress' %}selected{% endif %}>In_progress</option>
+                    <option value="Completed" {% if request.GET.status == 'Completed' %}selected{% endif %}>Completed</option>
+                    <option value="Upcomming" {% if request.GET.status == 'Upcomming' %}selected{% endif %}>Upcomming</option>
+                </select>
+            </div>
+            <div class="col-md-3 align-self-end">
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fa fa-filter"></i> Filter
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Task Table -->
+    <a href="{% url 'task-create' %}" class="btn btn-success mb-3">
+        <i class="fa fa-plus"></i> Create New Task
+    </a>
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Task ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Tag</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in object_list %}
+                <tr>
+                    <td>{{ task.task_id }}</td>
+                    <td>{{ task.task_name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.start_date }} {{ task.start_time }}</td>
+                    <td>{{ task.end_date }} {{ task.end_time }}</td>
+                    <td>{{ task.tag }}</td>
+                    <td>
+                        <a href="{% url 'task-update' task.pk %}" class="btn btn-sm btn-info">Edit</a>
+                        <a href="{% url 'task-delete' task.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="7" class="text-center">No tasks found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base_task.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{% if object %}<i class="fa fa-pencil"></i> Edit Task{% else %}<i class="fa fa-plus"></i> Create Task{% endif %}</h5>
+            <a href="{% url 'task-dashboard' %}" class="btn btn-light btn-sm">
+                <i class="fa fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.instance.task_id %}
+                <div class="form-group">
+                    <label>Task ID</label>
+                    <input type="text" class="form-control" value="{{ form.instance.task_id }}" readonly>
+                </div>
+                {% endif %}
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.task_name.label_tag }}
+                        {{ form.task_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.tag.label_tag }}
+                        {{ form.tag }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.start_date.label_tag }}
+                        {{ form.start_date }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.start_time.label_tag }}
+                        {{ form.start_time }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.end_date.label_tag }}
+                        {{ form.end_date }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.end_time.label_tag }}
+                        {{ form.end_time }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.status.label_tag }}
+                    {{ form.status }}
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success mr-2">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                    <a href="{% url 'task-dashboard' %}" class="btn btn-secondary">
+                        <i class="fa fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

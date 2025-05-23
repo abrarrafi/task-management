@@ -11,21 +11,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-/* Reset margins and padding */
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #fff; /* match the form background */
-    font-family: Arial, sans-serif;
-}
+        /* Reset margins and padding */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
 
-/* Ensure full height if needed */
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
 
 /* Adjust main container */
         .container {
@@ -92,6 +91,7 @@ body {
             font-size: 14px !important;
         }
 
+
         ::placeholder {
             color: #BDBDBD;
             opacity: 1;
@@ -123,16 +123,22 @@ body {
         }
 
         .btn-blue {
-            background-color: #1A237E;
+            background-color: #457dff;
             width: 150px;
             color: #fff;
             border-radius: 2px;
         }
-
+/* 01529C */
         .btn-blue:hover {
-            background-color: #000;
+            background-color: #1f62fd;
             cursor: pointer;
+            color: white;
         }
+
+        .footer {
+            width: 100%;
+        }
+
 
         .bg-blue {
             color: #fff;
@@ -158,13 +164,16 @@ body {
 </head>
 
 <body>
-    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="content flex-grow-1 pt-5">
 
         {% block content %}
         {% endblock %}
+    </div> 
+
+    <!-- <footer class="footer mt-auto w-100">
         <div class="bg-blue py-4">
             <div class="row px-3">
-                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2019.</small>
+                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2025.</small>
                 <div class="social-contact ml-4 ml-sm-auto">
                     <span class="fa fa-facebook mr-4 text-sm"></span>
                     <span class="fa fa-google-plus mr-4 text-sm"></span>
@@ -173,7 +182,7 @@ body {
                 </div>
             </div>
         </div>
-    </div>
+    </footer> -->
     
 
     <!-- jQuery 3.2.1 -->

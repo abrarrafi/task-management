@@ -88,7 +88,9 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')  # You can change to dashboard or any page
+            # return redirect('home')  # You can change to dashboard or any page
+            return redirect('task-dashboard')
+
         else:
             messages.error(request, 'Invalid username or password')
     else:

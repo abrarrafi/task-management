@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o^q-bi1-+jb9#6zfiwh#=5$f#mta1_%y&f@=gcmi_e+0r4qkvu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',  # accounts app
+    'tasks',
     # 'django.contrib.sites',  # for allauth or email-based features
 ]
 

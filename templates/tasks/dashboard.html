@@ -1,0 +1,93 @@
+{% extends 'base_task.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<!-- Dashboard Content -->
+<div class="container mt-4">
+    <h2 class="mb-4">Task Overview</h2>
+
+    <!-- Task Table -->
+    <a href="{% url 'task-create' %}" class="btn btn-success mb-3">
+        <i class="fa fa-plus"></i> Create New Task
+    </a>
+
+    <!-- Section: In Progress (Today) -->
+    <h5 class="bg-primary text-white p-2 rounded">Todays Tasks</h5>
+    <div class="table-responsive mb-4">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Task ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Tag</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks_today %}
+                    <tr>
+                        <td>{{ task.task_id }}</td>
+                        <td>{{ task.task_name }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>{{ task.start_date }} {{ task.start_time }}</td>
+                        <td>{{ task.end_date }} {{ task.end_time }}</td>
+                        <td>{{ task.tag }}</td>
+                        <td>
+                            <a href="{% url 'task-update' task.pk %}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{% url 'task-delete' task.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="7" class="text-center">No tasks in progress today.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section: Pending (Before Today) -->
+    <!-- Section: Other Pending or Upcoming Tasks -->
+    <h5 class="bg-warning text-dark p-2 rounded">Pending & Upcoming</h5>
+    <div class="table-responsive mb-4">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Task ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Tag</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks_others %}
+                    <tr>
+                        <td>{{ task.task_id }}</td>
+                        <td>{{ task.task_name }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>{{ task.start_date }} {{ task.start_time }}</td>
+                        <td>{{ task.end_date }} {{ task.end_time }}</td>
+                        <td>{{ task.tag }}</td>
+                        <td>
+                            <a href="{% url 'task-update' task.pk %}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{% url 'task-delete' task.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="7" class="text-center">No tasks found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
+
+

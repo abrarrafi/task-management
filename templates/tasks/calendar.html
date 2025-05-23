@@ -1,0 +1,144 @@
+{% extends 'base_task.html' %}
+{% load static %}
+
+{% block title %}My Task Calendar{% endblock %}
+
+{% block content %}
+<style>
+  /* Your existing styles here */
+  body {
+    background: #f4f6f8;
+  }
+
+  header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2rem auto 4rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.1);
+  }
+
+  #calendar {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .fc {
+    font-weight: 500;
+  }
+
+  .fc-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .fc-button:hover {
+    background-color: #2980b9;
+  }
+
+  .fc-toolbar-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #34495e;
+  }
+
+  .fc-daygrid-day {
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .fc-daygrid-day:hover {
+    background-color: #eaf3fc;
+    cursor: pointer;
+  }
+
+  .fc-event {
+    background-color: #27ae60 !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgb(39 174 96 / 0.6);
+    color: white !important;
+  }
+
+  @media (max-width: 600px) {
+    main {
+      margin: 1rem;
+      padding: 1rem;
+    }
+
+    header {
+      font-size: 1.3rem;
+      padding: 1rem;
+    }
+  }
+</style>
+
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.css" rel="stylesheet" />
+
+<main>
+  <div id="calendar"></div>
+</main>
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      weekNumbers: true,
+      dayMaxEvents: true,
+
+      events: '{% url "events_api" %}',
+
+      height: 'auto',
+
+      dateClick: function(info) {
+        // Open create form with clicked date as start_date param
+        var dateStr = info.dateStr; // yyyy-mm-dd
+        var createUrl = "{% url 'task-create' %}" + "?start_date=" + dateStr;
+        window.location.href = createUrl;
+      },
+
+      eventClick: function(info) {
+        // Open edit form with clicked task's id
+        var taskId = info.event.id;
+        // Assuming your edit URL is something like /tasks/edit/<task_id>/
+        // Adjust if needed!
+        var editUrl = "/tasks/edit/" + taskId + "/";
+        window.location.href = editUrl;
+      }
+    });
+
+    calendar.render();
+  });
+</script>
+{% endblock %}

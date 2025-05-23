@@ -1,0 +1,35 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fa fa-tachometer"></i> MyTask</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.resolver_match.url_name == 'task-dashboard' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'task-dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.url_name == 'task-list' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'task-list' %}">Task List</a>
+                </li>
+                <li class="nav-item {% if request.resolver_match.url_name == 'calendar_view' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'calendar_view' %}">Calendar</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="navbar-text text-white mr-3">Welcome, {{ user.username }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light btn-sm" href="{% url 'logout' %}">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
